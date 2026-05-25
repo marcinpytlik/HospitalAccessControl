@@ -1,0 +1,29 @@
+# Build output
+bin/
+obj/
+.vs/
+
+# VS Code local settings
+.vscode/.ropeproject/
+
+# User files
+*.user
+*.suo
+
+# Logs
+*.log
+
+# Secrets
+appsettings.Development.json
+*.secrets.json
+.env
+
+# SQL artifacts
+*.bak
+*.trn
+*.dif
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
