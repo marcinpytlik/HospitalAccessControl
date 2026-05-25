@@ -1,0 +1,1 @@
+-- TODO: Klucze obce, unikalność, check constraints

@@ -1,0 +1,1 @@
+-- TODO: Utworzenie schematów dictionary, medical, security, audit, app

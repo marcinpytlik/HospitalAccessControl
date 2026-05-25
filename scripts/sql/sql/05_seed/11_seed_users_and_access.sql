@@ -1,0 +1,1 @@
+-- TODO: Użytkownicy aplikacyjni, role, oddziały

@@ -1,0 +1,24 @@
+erDiagram
+    DEPARTMENTS ||--o{ PATIENTS : has
+    DEPARTMENTS ||--o{ PATIENT_ADMISSIONS : has
+    DEPARTMENTS ||--o{ MEDICAL_RECORDS : has
+    DEPARTMENTS ||--o{ PATIENT_NOTES : has
+    DEPARTMENTS ||--o{ USER_DEPARTMENT_ACCESS : grants
+
+    GENDERS ||--o{ PATIENTS : classifies
+    PATIENT_STATUSES ||--o{ PATIENTS : classifies
+
+    PATIENTS ||--o{ PATIENT_ADMISSIONS : has
+    PATIENTS ||--o{ MEDICAL_RECORDS : has
+    PATIENTS ||--o{ PATIENT_NOTES : has
+    PATIENTS ||--o{ ACCESS_LOG : audited
+
+    MEDICAL_RECORD_TYPES ||--o{ MEDICAL_RECORDS : classifies
+
+    APPLICATION_USERS ||--o{ USER_DEPARTMENT_ACCESS : assigned
+    APPLICATION_USERS ||--o{ USER_ROLE_ASSIGNMENTS : has
+
+    APPLICATION_ROLES ||--o{ USER_ROLE_ASSIGNMENTS : assigned
+
+    ACCESS_ACTION_TYPES ||--o{ ACCESS_LOG : classifies
+    SECURITY_EVENT_TYPES ||--o{ SECURITY_EVENTS : classifies

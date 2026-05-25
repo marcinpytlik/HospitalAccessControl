@@ -1,0 +1,1 @@
+-- TODO: Funkcja predicate dla RLS

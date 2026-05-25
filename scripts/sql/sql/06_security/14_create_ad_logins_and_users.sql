@@ -1,0 +1,1 @@
+-- TODO: Loginy i użytkownicy dla grup AD
