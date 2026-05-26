@@ -1,3 +1,4 @@
+using HospitalAccessControl.Infrastructure.Data.Seed;
 using HospitalAccessControl.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -32,5 +33,7 @@ public sealed class ApplicationRoleConfiguration : IEntityTypeConfiguration<Appl
         builder.HasIndex(x => x.Code)
             .IsUnique()
             .HasDatabaseName("UQ_ApplicationRoles_Code");
+        builder.HasData(ApplicationRoleSeed.Data);
     }
+
 }

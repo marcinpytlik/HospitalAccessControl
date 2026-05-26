@@ -1,3 +1,4 @@
+using HospitalAccessControl.Infrastructure.Data.Seed;
 using HospitalAccessControl.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -35,5 +36,6 @@ public sealed class DepartmentConfiguration : IEntityTypeConfiguration<Departmen
 
         builder.HasIndex(x => x.Name)
             .HasDatabaseName("IX_Departments_Name");
+        builder.HasData(DepartmentSeed.Data);
     }
 }
