@@ -1,3 +1,4 @@
+using HospitalAccessControl.Infrastructure.Data.Seed;
 using HospitalAccessControl.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -45,5 +46,6 @@ public sealed class UserDepartmentAccessConfiguration : IEntityTypeConfiguration
 
         builder.HasIndex(x => new { x.ApplicationUserId, x.DepartmentId, x.IsActive })
             .HasDatabaseName("IX_UserDepartmentAccess_User_Department_Active");
+            builder.HasData(UserDepartmentAccessSeed.Data);
     }
 }

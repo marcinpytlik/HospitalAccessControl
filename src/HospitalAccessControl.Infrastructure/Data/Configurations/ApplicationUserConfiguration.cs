@@ -1,3 +1,4 @@
+using HospitalAccessControl.Infrastructure.Data.Seed;
 using HospitalAccessControl.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -40,5 +41,6 @@ public sealed class ApplicationUserConfiguration : IEntityTypeConfiguration<Appl
         builder.HasIndex(x => x.SamAccountName)
             .IsUnique()
             .HasDatabaseName("UQ_ApplicationUsers_SamAccountName");
+            builder.HasData(ApplicationUserSeed.Data);
     }
 }

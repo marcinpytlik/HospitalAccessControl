@@ -1,3 +1,4 @@
+using HospitalAccessControl.Infrastructure.Data.Seed;
 using HospitalAccessControl.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -63,5 +64,6 @@ public sealed class MedicalRecordConfiguration : IEntityTypeConfiguration<Medica
 
         builder.HasIndex(x => x.CreatedAt)
             .HasDatabaseName("IX_MedicalRecords_CreatedAt");
+        builder.HasData(MedicalRecordSeed.Data);
     }
 }

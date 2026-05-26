@@ -1,3 +1,4 @@
+using HospitalAccessControl.Infrastructure.Data.Seed;
 using HospitalAccessControl.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -72,5 +73,6 @@ public sealed class PatientConfiguration : IEntityTypeConfiguration<Patient>
 
         builder.HasIndex(x => x.PatientStatusCode)
             .HasDatabaseName("IX_Patients_Status");
+        builder.HasData(PatientSeed.Data);
     }
 }

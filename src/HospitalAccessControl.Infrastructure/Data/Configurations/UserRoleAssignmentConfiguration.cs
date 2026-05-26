@@ -1,3 +1,4 @@
+using HospitalAccessControl.Infrastructure.Data.Seed;
 using HospitalAccessControl.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -45,5 +46,6 @@ public sealed class UserRoleAssignmentConfiguration : IEntityTypeConfiguration<U
 
         builder.HasIndex(x => new { x.ApplicationUserId, x.ApplicationRoleId, x.IsActive })
             .HasDatabaseName("IX_UserRoleAssignments_User_Role_Active");
+         builder.HasData(UserRoleAssignmentSeed.Data);   
     }
 }
