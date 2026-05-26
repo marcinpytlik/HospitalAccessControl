@@ -55,7 +55,7 @@ Po wykonaniu DAY001 projekt będzie wyglądał mniej więcej tak:
 
 ```text
 HospitalAccessControl
-├── HospitalAccessControl.sln
+├── HospitalAccessControl.slnx
 ├── src
 │   ├── HospitalAccessControl.Domain
 │   ├── HospitalAccessControl.Application
@@ -232,12 +232,12 @@ dotnet new xunit -n HospitalAccessControl.IntegrationTests -o .\tests\HospitalAc
 # Krok 7 — dodanie projektów do solution
 
 ```powershell
-dotnet sln .\HospitalAccessControl.sln add .\src\HospitalAccessControl.Domain\HospitalAccessControl.Domain.csproj
-dotnet sln .\HospitalAccessControl.sln add .\src\HospitalAccessControl.Application\HospitalAccessControl.Application.csproj
-dotnet sln .\HospitalAccessControl.sln add .\src\HospitalAccessControl.Infrastructure\HospitalAccessControl.Infrastructure.csproj
-dotnet sln .\HospitalAccessControl.sln add .\src\HospitalAccessControl.Web\HospitalAccessControl.Web.csproj
-dotnet sln .\HospitalAccessControl.sln add .\tests\HospitalAccessControl.Tests\HospitalAccessControl.Tests.csproj
-dotnet sln .\HospitalAccessControl.sln add .\tests\HospitalAccessControl.IntegrationTests\HospitalAccessControl.IntegrationTests.csproj
+dotnet sln .\HospitalAccessControl.slnx add .\src\HospitalAccessControl.Domain\HospitalAccessControl.Domain.csproj
+dotnet sln .\HospitalAccessControl.slnx add .\src\HospitalAccessControl.Application\HospitalAccessControl.Application.csproj
+dotnet sln .\HospitalAccessControl.slnx add .\src\HospitalAccessControl.Infrastructure\HospitalAccessControl.Infrastructure.csproj
+dotnet sln .\HospitalAccessControl.slnx add .\src\HospitalAccessControl.Web\HospitalAccessControl.Web.csproj
+dotnet sln .\HospitalAccessControl.slnx add .\tests\HospitalAccessControl.Tests\HospitalAccessControl.Tests.csproj
+dotnet sln .\HospitalAccessControl.slnx add .\tests\HospitalAccessControl.IntegrationTests\HospitalAccessControl.IntegrationTests.csproj
 ```
 
 Weryfikacja:
