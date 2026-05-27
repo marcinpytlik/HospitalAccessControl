@@ -43,6 +43,7 @@ else
                 <th>Płeć</th>
                 <th>Status</th>
                 <th>Oddział</th>
+                <th>Akcje</th>
             </tr>
         </thead>
         <tbody>
@@ -61,6 +62,13 @@ else
                     —
                     @patient.DepartmentName
                 </td>
+                <td>
+    <a asp-page="/Patients/Details"
+       asp-route-id="@patient.PatientId"
+       class="btn btn-sm btn-primary">
+        Szczegóły
+    </a>
+</td>
             </tr>
         }
         </tbody>
