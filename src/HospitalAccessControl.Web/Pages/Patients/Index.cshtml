@@ -1,0 +1,68 @@
+@page
+@model HospitalAccessControl.Web.Pages.Patients.IndexModel
+
+@{
+    ViewData["Title"] = "Pacjenci";
+}
+
+<h1>Pacjenci</h1>
+
+<p>
+    Lista pacjentów widocznych dla aktualnego użytkownika.
+</p>
+
+<div class="alert alert-info">
+    <strong>Aktualny użytkownik:</strong>
+    @Model.CurrentUser.DomainLogin
+    <br />
+    <strong>Nazwa:</strong>
+    @Model.CurrentUser.DisplayName
+</div>
+
+<div class="alert alert-secondary">
+    <strong>Liczba widocznych pacjentów:</strong>
+    @Model.Patients.Count
+</div>
+
+@if (Model.Patients.Count == 0)
+{
+    <div class="alert alert-warning">
+        Brak pacjentów do wyświetlenia albo użytkownik nie ma dostępu do danych medycznych.
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numer medyczny</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Data urodzenia</th>
+                <th>Płeć</th>
+                <th>Status</th>
+                <th>Oddział</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var patient in Model.Patients)
+        {
+            <tr>
+                <td>@patient.PatientId</td>
+                <td>@patient.MedicalNumber</td>
+                <td>@patient.FirstName</td>
+                <td>@patient.LastName</td>
+                <td>@patient.DateOfBirth</td>
+                <td>@patient.GenderCode</td>
+                <td>@patient.PatientStatusCode</td>
+                <td>
+                    @patient.DepartmentCode
+                    —
+                    @patient.DepartmentName
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

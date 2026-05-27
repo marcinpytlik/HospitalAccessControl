@@ -5,7 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HospitalAccessControl.Application.Diagnostics;
 using HospitalAccessControl.Infrastructure.Diagnostics;
-
+using HospitalAccessControl.Application.Patients;
+using HospitalAccessControl.Infrastructure.Patients;
 namespace HospitalAccessControl.Infrastructure.DependencyInjection;
 
 public static class ServiceCollectionExtensions
@@ -33,6 +34,7 @@ public static class ServiceCollectionExtensions
             options.AddInterceptors(sessionContextInterceptor);
         });
 services.AddScoped<ISqlSessionContextDiagnostics, SqlSessionContextDiagnostics>();
+services.AddScoped<IPatientReadService, PatientReadService>();
         return services;
     }
 }
