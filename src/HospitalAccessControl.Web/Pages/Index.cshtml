@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model IndexModel
 
 @{
@@ -12,7 +12,7 @@
 
 <hr />
 
-<h2>Aktualny użytkownik DEV</h2>
+<h2>Aktualny użytkownik</h2>
 
 <table class="table">
     <tbody>
@@ -31,6 +31,10 @@
         <tr>
             <th>DisplayName</th>
             <td>@Model.CurrentUser.DisplayName</td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td>@string.Join(", ", Model.CurrentUser.Roles)</td>
         </tr>
     </tbody>
 </table>

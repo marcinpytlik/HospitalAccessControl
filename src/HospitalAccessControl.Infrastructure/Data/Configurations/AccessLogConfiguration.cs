@@ -39,6 +39,8 @@ public sealed class AccessLogConfiguration : IEntityTypeConfiguration<AccessLog>
         builder.Property(x => x.AdditionalInfo)
             .HasMaxLength(2000);
 
+        builder.Property(x => x.RequestedPatientId);
+
         builder.HasOne(x => x.Patient)
             .WithMany()
             .HasForeignKey(x => x.PatientId)
@@ -49,6 +51,9 @@ public sealed class AccessLogConfiguration : IEntityTypeConfiguration<AccessLog>
 
         builder.HasIndex(x => x.PatientId)
             .HasDatabaseName("IX_AccessLog_PatientId");
+
+        builder.HasIndex(x => x.RequestedPatientId)
+            .HasDatabaseName("IX_AccessLog_RequestedPatientId");
 
         builder.HasIndex(x => x.AccessDate)
             .HasDatabaseName("IX_AccessLog_AccessDate");

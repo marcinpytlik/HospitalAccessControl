@@ -51,7 +51,8 @@ public class DetailsModel : PageModel
             new AccessLogCreateDto
             {
                 DomainLogin = CurrentUser.DomainLogin,
-                PatientId = id,
+                PatientId = Patient?.PatientId,
+                RequestedPatientId = id,
                 ActionCode = ViewPatientDetailsAction,
                 ObjectName = "medical.Patients",
                 ClientHost = HttpContext.Connection.RemoteIpAddress?.ToString(),

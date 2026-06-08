@@ -21,6 +21,7 @@ public sealed class AuditService : IAuditService
         {
             DomainLogin = accessLog.DomainLogin,
             PatientId = accessLog.PatientId,
+            RequestedPatientId = accessLog.RequestedPatientId,
             ActionCode = accessLog.ActionCode,
             ObjectName = accessLog.ObjectName,
             AccessDate = DateTime.UtcNow,

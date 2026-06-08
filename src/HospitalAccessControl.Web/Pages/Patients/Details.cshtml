@@ -22,6 +22,7 @@
     </div>
 
     <p>
+        <a asp-page="/Patients/AddRecord" asp-route-id="@Model.Patient.PatientId" class="btn btn-primary">Dodaj wpis medyczny</a>
         <a asp-page="/Patients/Index" class="btn btn-secondary">Powrót do listy</a>
     </p>
 }
@@ -113,6 +114,7 @@ else
     }
 
     <p>
+        <a asp-page="/Patients/AddRecord" asp-route-id="@Model.Patient.PatientId" class="btn btn-primary">Dodaj wpis medyczny</a>
         <a asp-page="/Patients/Index" class="btn btn-secondary">Powrót do listy</a>
     </p>
 }

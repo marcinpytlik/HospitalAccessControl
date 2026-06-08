@@ -1,0 +1,44 @@
+@page
+@model HospitalAccessControl.Web.Pages.MyAccess.IndexModel
+
+@{
+    ViewData["Title"] = "Moje uprawnienia";
+}
+
+<h1>Moje uprawnienia</h1>
+
+<div class="alert alert-info">
+    <strong>Użytkownik:</strong> @Model.Access.DomainLogin
+</div>
+
+<h2>Role</h2>
+
+@if (Model.Access.Roles.Count == 0)
+{
+    <div class="alert alert-warning">Brak przypisanych ról.</div>
+}
+else
+{
+    <ul>
+    @foreach (var role in Model.Access.Roles)
+    {
+        <li>@role</li>
+    }
+    </ul>
+}
+
+<h2>Oddziały</h2>
+
+@if (Model.Access.Departments.Count == 0)
+{
+    <div class="alert alert-secondary">Brak przypisanych oddziałów.</div>
+}
+else
+{
+    <ul>
+    @foreach (var department in Model.Access.Departments)
+    {
+        <li>@department</li>
+    }
+    </ul>
+}

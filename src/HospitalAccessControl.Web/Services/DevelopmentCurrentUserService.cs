@@ -21,7 +21,8 @@ public sealed class DevelopmentCurrentUserService : ICurrentUserService
                 DomainLogin = string.Empty,
                 SamAccountName = string.Empty,
                 DisplayName = "Anonymous",
-                IsAuthenticated = false
+                IsAuthenticated = false,
+                Roles = Array.Empty<string>()
             };
         }
 
@@ -30,7 +31,8 @@ public sealed class DevelopmentCurrentUserService : ICurrentUserService
             DomainLogin = _options.DomainLogin,
             SamAccountName = _options.SamAccountName,
             DisplayName = _options.DisplayName,
-            IsAuthenticated = true
+            IsAuthenticated = true,
+            Roles = Array.Empty<string>()
         };
     }
 }

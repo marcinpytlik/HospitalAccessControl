@@ -63,6 +63,9 @@ namespace HospitalAccessControl.Infrastructure.Data.Migrations
                     b.Property<int?>("PatientId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RequestedPatientId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("WasSuccessful")
                         .HasColumnType("bit");
 
@@ -79,6 +82,9 @@ namespace HospitalAccessControl.Infrastructure.Data.Migrations
 
                     b.HasIndex("PatientId")
                         .HasDatabaseName("IX_AccessLog_PatientId");
+
+                    b.HasIndex("RequestedPatientId")
+                        .HasDatabaseName("IX_AccessLog_RequestedPatientId");
 
                     b.HasIndex("WasSuccessful")
                         .HasDatabaseName("IX_AccessLog_WasSuccessful");

@@ -1,7 +1,9 @@
 namespace HospitalAccessControl.Application.Audit;
 
-public sealed class AccessLogCreateDto
+public sealed class AccessLogListItemDto
 {
+    public long AccessLogId { get; init; }
+
     public string DomainLogin { get; init; } = string.Empty;
 
     public int? PatientId { get; init; }
@@ -11,6 +13,8 @@ public sealed class AccessLogCreateDto
     public string ActionCode { get; init; } = string.Empty;
 
     public string ObjectName { get; init; } = string.Empty;
+
+    public DateTime AccessDate { get; init; }
 
     public string? ClientHost { get; init; }
 

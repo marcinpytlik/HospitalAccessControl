@@ -1,0 +1,70 @@
+@page "{id:int}"
+@model HospitalAccessControl.Web.Pages.Patients.AddRecordModel
+
+@{
+    ViewData["Title"] = "Dodaj wpis medyczny";
+}
+
+<h1>Dodaj wpis medyczny</h1>
+
+@if (Model.AccessDeniedOrNotFound || Model.Patient is null)
+{
+    <div class="alert alert-warning">
+        Nie znaleziono pacjenta albo brak dostępu.
+    </div>
+
+    <a asp-page="/Patients/Index" class="btn btn-secondary">Powrót do listy</a>
+}
+else
+{
+    <div class="alert alert-info">
+        <strong>Pacjent:</strong>
+        @Model.Patient.FirstName @Model.Patient.LastName
+        (@Model.Patient.MedicalNumber)
+        <br />
+        <strong>Oddział:</strong>
+        @Model.Patient.DepartmentCode — @Model.Patient.DepartmentName
+    </div>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="RecordTypeCode" class="form-label">Typ wpisu</label>
+            <select asp-for="RecordTypeCode" class="form-select">
+                <option value="OBSERVATION">Obserwacja</option>
+                <option value="DIAGNOSIS">Diagnoza</option>
+                <option value="TREATMENT">Leczenie</option>
+                <option value="NURSING">Wpis pielęgniarski</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Tytuł</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Opis</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Diagnosis" class="form-label">Diagnoza</label>
+            <textarea asp-for="Diagnosis" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Treatment" class="form-label">Leczenie</label>
+            <textarea asp-for="Treatment" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <a asp-page="/Patients/Details" asp-route-id="@Model.PatientId" class="btn btn-secondary">Anuluj</a>
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

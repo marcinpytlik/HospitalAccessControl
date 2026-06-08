@@ -1,30 +1,37 @@
+using HospitalAccessControl.Application.Audit;
 using HospitalAccessControl.Application.Common.Security;
-using HospitalAccessControl.Application.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace HospitalAccessControl.Web.Pages;
+namespace HospitalAccessControl.Web.Pages.Audit;
 
 public class IndexModel : PageModel
 {
+    private readonly IAuditReadService _auditReadService;
     private readonly ICurrentUserService _currentUserService;
-    private readonly ISqlSessionContextDiagnostics _sqlSessionContextDiagnostics;
     private readonly IUserRoleReadService _userRoleReadService;
 
     public IndexModel(
+        IAuditReadService auditReadService,
         ICurrentUserService currentUserService,
-        ISqlSessionContextDiagnostics sqlSessionContextDiagnostics,
         IUserRoleReadService userRoleReadService)
     {
+        _auditReadService = auditReadService;
         _currentUserService = currentUserService;
-        _sqlSessionContextDiagnostics = sqlSessionContextDiagnostics;
         _userRoleReadService = userRoleReadService;
     }
 
     public CurrentUserDto CurrentUser { get; private set; } = new();
 
-    public string? SqlSessionCurrentUser { get; private set; }
+    public bool AccessDenied { get; private set; }
 
-    public async Task OnGetAsync(CancellationToken cancellationToken)
+    public IReadOnlyList<AccessLogListItemDto> LatestEvents { get; private set; }
+        = Array.Empty<AccessLogListItemDto>();
+
+    public IReadOnlyList<AccessLogListItemDto> FailedAttempts { get; private set; }
+        = Array.Empty<AccessLogListItemDto>();
+
+    public async Task<IActionResult> OnGetAsync(CancellationToken cancellationToken)
     {
         var currentUser = _currentUserService.GetCurrentUser();
         var roles = await _userRoleReadService.GetRoleCodesAsync(
@@ -40,7 +47,16 @@ public class IndexModel : PageModel
             Roles = roles
         };
 
-        SqlSessionCurrentUser =
-            await _sqlSessionContextDiagnostics.GetCurrentUserFromSessionContextAsync(cancellationToken);
+        if (!CurrentUser.HasRole("Auditor") &&
+            !CurrentUser.HasRole("ITAdministrator"))
+        {
+            AccessDenied = true;
+            return Page();
+        }
+
+        LatestEvents = await _auditReadService.GetLatestAsync(100, cancellationToken);
+        FailedAttempts = await _auditReadService.GetFailedAttemptsAsync(50, cancellationToken);
+
+        return Page();
     }
 }

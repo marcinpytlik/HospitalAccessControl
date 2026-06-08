@@ -1,0 +1,108 @@
+@page
+@model HospitalAccessControl.Web.Pages.Audit.IndexModel
+
+@{
+    ViewData["Title"] = "Audyt";
+}
+
+<h1>Audyt dostępu</h1>
+
+<div class="alert alert-info">
+    <strong>Aktualny użytkownik:</strong> @Model.CurrentUser.DomainLogin
+    <br />
+    <strong>Role:</strong> @string.Join(", ", Model.CurrentUser.Roles)
+</div>
+
+@if (Model.AccessDenied)
+{
+    <div class="alert alert-danger">
+        Brak uprawnień do panelu audytu.
+    </div>
+}
+else
+{
+    <p>
+        Panel pokazuje zdarzenia dostępu do danych pacjentów.
+    </p>
+
+    <div class="alert alert-secondary">
+        <strong>Ostatnie zdarzenia:</strong> @Model.LatestEvents.Count
+        <br />
+        <strong>Nieudane próby:</strong> @Model.FailedAttempts.Count
+    </div>
+
+    <h2>Nieudane próby dostępu</h2>
+
+    @if (Model.FailedAttempts.Count == 0)
+    {
+        <div class="alert alert-success">
+            Brak nieudanych prób dostępu.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Użytkownik</th>
+                    <th>PatientId</th>
+                    <th>RequestedPatientId</th>
+                    <th>Akcja</th>
+                    <th>Data UTC</th>
+                    <th>Informacja</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.FailedAttempts)
+            {
+                <tr>
+                    <td>@item.AccessLogId</td>
+                    <td>@item.DomainLogin</td>
+                    <td>@item.PatientId</td>
+                    <td>@item.RequestedPatientId</td>
+                    <td>@item.ActionCode</td>
+                    <td>@item.AccessDate</td>
+                    <td>@item.AdditionalInfo</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+
+    <h2>Ostatnie zdarzenia</h2>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Użytkownik</th>
+                <th>PatientId</th>
+                <th>RequestedPatientId</th>
+                <th>Akcja</th>
+                <th>Sukces</th>
+                <th>Data UTC</th>
+                <th>Host</th>
+                <th>Aplikacja</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.LatestEvents)
+        {
+            <tr>
+                <td>@item.AccessLogId</td>
+                <td>@item.DomainLogin</td>
+                <td>@item.PatientId</td>
+                <td>@item.RequestedPatientId</td>
+                <td>@item.ActionCode</td>
+                <td>@item.WasSuccessful</td>
+                <td>@item.AccessDate</td>
+                <td>@item.ClientHost</td>
+                <td>@item.ApplicationName</td>
+                <td>@item.AdditionalInfo</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

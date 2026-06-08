@@ -9,4 +9,11 @@ public sealed class CurrentUserDto
     public string DisplayName { get; init; } = string.Empty;
 
     public bool IsAuthenticated { get; init; }
+
+    public IReadOnlyList<string> Roles { get; init; } = Array.Empty<string>();
+
+    public bool HasRole(string roleCode)
+    {
+        return Roles.Contains(roleCode, StringComparer.OrdinalIgnoreCase);
+    }
 }

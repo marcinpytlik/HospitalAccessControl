@@ -8,6 +8,8 @@ public sealed class AccessLog
 
     public int? PatientId { get; set; }
 
+    public int? RequestedPatientId { get; set; }
+
     public Patient? Patient { get; set; }
 
     public string ActionCode { get; set; } = string.Empty;

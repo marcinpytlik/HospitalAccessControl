@@ -5,6 +5,7 @@ SELECT TOP (50)
     AccessLogId,
     DomainLogin,
     PatientId,
+    RequestedPatientId,
     ActionCode,
     ObjectName,
     WasSuccessful,
@@ -33,6 +34,7 @@ SELECT TOP (50)
     AccessLogId,
     DomainLogin,
     PatientId,
+    RequestedPatientId,
     ActionCode,
     AdditionalInfo,
     AccessDate
