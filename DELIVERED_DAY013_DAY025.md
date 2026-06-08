@@ -20,7 +20,7 @@ DAY025 Dokumentacja techniczna końcowa
 
 ## Ważna uwaga
 
-W środowisku wykonawczym tej paczki nie był dostępny program `dotnet`, więc nie mogłem wykonać lokalnego `dotnet build` ani `dotnet test` w sandboxie. Kod został przygotowany spójnie z istniejącą strukturą projektu. Po rozpakowaniu na komputerze developerskim wykonaj:
+Po rozpakowaniu na komputerze developerskim wykonaj:
 
 ```powershell
 dotnet build
